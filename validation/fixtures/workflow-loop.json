@@ -1,0 +1,86 @@
+{
+  "name": "循环结构化工作流",
+  "workspacePath": null,
+  "nodes": [
+    {
+      "id": "start-1",
+      "kind": "start",
+      "label": "准备列表",
+      "description": "初始化列表变量。",
+      "position": { "x": 120, "y": 120 },
+      "config": {
+        "inputTemplate": "[\"分析需求\", \"实现功能\", \"运行验证\"]"
+      }
+    },
+    {
+      "id": "loop-1",
+      "kind": "loop",
+      "label": "遍历事项",
+      "description": "按顺序处理事项。",
+      "position": { "x": 340, "y": 120 },
+      "config": {
+        "itemsVariable": "{{node.start-1.output}}",
+        "itemVariableName": "loop_item",
+        "itemBranchKey": "item",
+        "doneBranchKey": "done"
+      }
+    },
+    {
+      "id": "llm-1",
+      "kind": "llm",
+      "label": "结构化输出",
+      "description": "输出结构化结果。",
+      "position": { "x": 580, "y": 120 },
+      "config": {
+        "model": "qwen3.5-9b",
+        "systemPrompt": "请按 JSON 返回。",
+        "promptTemplate": "请处理当前项：{{loop_item}}",
+        "outputMode": "structured",
+        "outputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"summary\": { \"type\": \"string\" }\n  },\n  \"required\": [\"summary\"]\n}"
+      }
+    },
+    {
+      "id": "end-1",
+      "kind": "end",
+      "label": "循环结束",
+      "description": "输出最终结果。",
+      "position": { "x": 840, "y": 240 },
+      "config": {
+        "outputFormat": "plain-text"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-start-loop",
+      "source": "start-1",
+      "target": "loop-1",
+      "label": "进入循环"
+    },
+    {
+      "id": "edge-loop-llm",
+      "source": "loop-1",
+      "target": "llm-1",
+      "label": "处理当前项",
+      "branchKey": "item"
+    },
+    {
+      "id": "edge-llm-loop",
+      "source": "llm-1",
+      "target": "loop-1",
+      "label": "继续下一项"
+    },
+    {
+      "id": "edge-loop-end",
+      "source": "loop-1",
+      "target": "end-1",
+      "label": "完成循环",
+      "branchKey": "done"
+    }
+  ],
+  "expectations": {
+    "entryNodeId": "start-1",
+    "loopNodeCount": 1,
+    "structuredLlmCount": 1
+  }
+}

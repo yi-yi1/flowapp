@@ -1,0 +1,122 @@
+{
+  "name": "分支工具工作流",
+  "workspacePath": "D:/Code/front/flowapp",
+  "nodes": [
+    {
+      "id": "start-1",
+      "kind": "start",
+      "label": "采集目标",
+      "description": "初始化上下文。",
+      "position": { "x": 120, "y": 120 },
+      "config": {
+        "inputTemplate": "读取工作区信息，并给出下一步建议。"
+      }
+    },
+    {
+      "id": "tool-1",
+      "kind": "tool",
+      "label": "读取说明文件",
+      "description": "读取 README 文件。",
+      "position": { "x": 340, "y": 160 },
+      "config": {
+        "toolType": "workspace_file",
+        "relativePath": "README.md",
+        "encoding": "utf8",
+        "failureStrategy": "empty"
+      }
+    },
+    {
+      "id": "llm-1",
+      "kind": "llm",
+      "label": "总结节点",
+      "description": "根据上下文生成总结。",
+      "position": { "x": 580, "y": 220 },
+      "config": {
+        "model": "qwen3.5-9b",
+        "systemPrompt": "请用中文输出。",
+        "promptTemplate": "请总结当前工作区内容：{{last_output}}",
+        "outputMode": "text",
+        "outputSchema": "{\n  \"type\": \"object\"\n}"
+      }
+    },
+    {
+      "id": "condition-1",
+      "kind": "condition",
+      "label": "判断是否审核",
+      "description": "根据结果决定是否审核。",
+      "position": { "x": 840, "y": 220 },
+      "config": {
+        "expression": "{{last_output}} contains 风险",
+        "trueLabel": "需要审核",
+        "falseLabel": "直接结束"
+      }
+    },
+    {
+      "id": "review-1",
+      "kind": "review",
+      "label": "人工审核",
+      "description": "等待人工确认。",
+      "position": { "x": 1080, "y": 140 },
+      "config": {
+        "instructions": "确认是否继续执行。"
+      }
+    },
+    {
+      "id": "end-1",
+      "kind": "end",
+      "label": "结果输出",
+      "description": "整理最终输出。",
+      "position": { "x": 1080, "y": 320 },
+      "config": {
+        "outputFormat": "markdown"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-start-tool",
+      "source": "start-1",
+      "target": "tool-1",
+      "label": "初始化"
+    },
+    {
+      "id": "edge-tool-llm",
+      "source": "tool-1",
+      "target": "llm-1",
+      "label": "文件内容"
+    },
+    {
+      "id": "edge-llm-condition",
+      "source": "llm-1",
+      "target": "condition-1",
+      "label": "总结结果"
+    },
+    {
+      "id": "edge-condition-review",
+      "source": "condition-1",
+      "target": "review-1",
+      "label": "需要审核",
+      "branchKey": "true"
+    },
+    {
+      "id": "edge-condition-end",
+      "source": "condition-1",
+      "target": "end-1",
+      "label": "直接结束",
+      "branchKey": "false"
+    },
+    {
+      "id": "edge-review-end",
+      "source": "review-1",
+      "target": "end-1",
+      "label": "审核通过",
+      "branchKey": "approved"
+    }
+  ],
+  "expectations": {
+    "entryNodeId": "start-1",
+    "reviewNodeCount": 1,
+    "conditionNodeCount": 1,
+    "toolNodeCount": 1
+  }
+}

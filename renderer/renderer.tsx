@@ -27,7 +27,14 @@
  */
 
 import React from "react";
-import {createRoot} from "react-dom/client";
-const dom = document.querySelector("#app");
-const app = createRoot(dom);
-app.render(<h1>Hello World!</h1>);
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import { AppV2 } from "./AppV2";
+
+const root = createRoot(document.getElementById("app") as HTMLElement);
+
+root.render(
+  <React.StrictMode>
+    <AppV2 />
+  </React.StrictMode>,
+);

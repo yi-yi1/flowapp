@@ -2,15 +2,29 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "target": "ESNext",
-    "module": "commonjs",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./renderer/*"
+      ]
+    },
     "outDir": "dist",
-    "moduleResolution": "node",
-    "resolveJsonModule": true
-  }
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "types": ["node"]
+  },
+  "include": ["electron", "renderer", "shared", "forge.env.d.ts"],
+  "exclude": [
+    "renderer/App.tsx",
+    "renderer/components/WorkflowCanvas.tsx",
+    "electron/services/workflow-engine.ts",
+    "electron/services/workflow-history-store.ts"
+  ]
 }

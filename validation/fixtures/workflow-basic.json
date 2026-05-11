@@ -1,0 +1,56 @@
+{
+  "name": "基础规划流",
+  "workspacePath": null,
+  "nodes": [
+    {
+      "id": "start-1",
+      "kind": "start",
+      "label": "采集目标",
+      "description": "根据用户任务初始化本次工作流。",
+      "position": { "x": 120, "y": 120 },
+      "config": {
+        "inputTemplate": "分析当前项目，并给出下一步最值得推进的实现里程碑。"
+      }
+    },
+    {
+      "id": "llm-1",
+      "kind": "llm",
+      "label": "规划节点",
+      "description": "根据输入生成下一步行动计划。",
+      "position": { "x": 340, "y": 188 },
+      "config": {
+        "model": "qwen3.5-9b",
+        "systemPrompt": "请把当前任务整理成按顺序执行的实现计划，并补充验证建议。"
+      }
+    },
+    {
+      "id": "end-1",
+      "kind": "end",
+      "label": "结果输出",
+      "description": "整理最终输出。",
+      "position": { "x": 560, "y": 256 },
+      "config": {
+        "outputFormat": "markdown"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-start-llm",
+      "source": "start-1",
+      "target": "llm-1",
+      "label": "上下文"
+    },
+    {
+      "id": "edge-llm-end",
+      "source": "llm-1",
+      "target": "end-1",
+      "label": "输出"
+    }
+  ],
+  "expectations": {
+    "entryNodeId": "start-1",
+    "terminalNodeId": "end-1",
+    "reviewNodeCount": 0
+  }
+}

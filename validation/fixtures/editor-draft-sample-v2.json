@@ -1,0 +1,37 @@
+{
+  "nodes": [
+    {
+      "id": "start-1",
+      "kind": "start",
+      "label": "采集目标",
+      "description": "初始化上下文。",
+      "position": { "x": 120, "y": 120 },
+      "config": {
+        "inputTemplate": "读取工作区信息，并给出下一步建议。"
+      }
+    },
+    {
+      "id": "condition-1",
+      "kind": "condition",
+      "label": "条件判断",
+      "description": "根据变量判断下一步。",
+      "position": { "x": 360, "y": 180 },
+      "config": {
+        "expression": "{{last_output}} contains 完成",
+        "trueLabel": "结束",
+        "falseLabel": "继续"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-start-condition",
+      "source": "start-1",
+      "target": "condition-1",
+      "label": "上下文"
+    }
+  ],
+  "selectedNodeId": "condition-1",
+  "workspacePath": "D:/Code/front/flowapp",
+  "theme": "light"
+}

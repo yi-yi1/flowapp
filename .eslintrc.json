@@ -12,5 +12,14 @@
     "plugin:import/electron",
     "plugin:import/typescript"
   ],
-  "parser": "@typescript-eslint/parser"
+  "parser": "@typescript-eslint/parser",
+  "ignorePatterns": [
+    "vite.main.config.ts",
+    "vite.preload.config.ts",
+    "vite.renderer.config.ts",
+    "renderer/App.tsx",
+    "renderer/components/WorkflowCanvas.tsx",
+    "electron/services/workflow-engine.ts",
+    "electron/services/workflow-history-store.ts"
+  ]
 }

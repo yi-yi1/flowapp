@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "工作流模板示例",
+  "exportedAt": "2026-04-17T10:30:00.000Z",
+  "kind": "template",
+  "draft": {
+    "nodes": [
+      {
+        "id": "start-1",
+        "kind": "start",
+        "label": "采集目标",
+        "description": "初始化上下文。",
+        "position": { "x": 120, "y": 120 },
+        "config": {
+          "inputTemplate": "读取工作区信息，并给出下一步建议。"
+        }
+      },
+      {
+        "id": "tool-1",
+        "kind": "tool",
+        "label": "读取说明文件",
+        "description": "读取 README 文件。",
+        "position": { "x": 340, "y": 160 },
+        "config": {
+          "toolType": "workspace_file",
+          "relativePath": "README.md",
+          "encoding": "utf8",
+          "failureStrategy": "empty"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge-start-tool",
+        "source": "start-1",
+        "target": "tool-1",
+        "label": "初始化"
+      }
+    ],
+    "selectedNodeId": "tool-1",
+    "workspacePath": "D:/Code/front/flowapp",
+    "theme": "dark"
+  }
+}

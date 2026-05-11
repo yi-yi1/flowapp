@@ -1,0 +1,73 @@
+{
+  "name": "人工审核流",
+  "workspacePath": "D:/Code/front/flowapp",
+  "nodes": [
+    {
+      "id": "start-1",
+      "kind": "start",
+      "label": "采集目标",
+      "description": "根据项目工作区初始化任务。",
+      "position": { "x": 120, "y": 120 },
+      "config": {
+        "inputTemplate": "分析当前项目工作区，并说明下一步最值得推进的开发任务。"
+      }
+    },
+    {
+      "id": "llm-1",
+      "kind": "llm",
+      "label": "规划节点",
+      "description": "根据上下文给出实施建议。",
+      "position": { "x": 340, "y": 188 },
+      "config": {
+        "model": "",
+        "systemPrompt": "请用中文输出清晰、可执行的实施方案。"
+      }
+    },
+    {
+      "id": "review-1",
+      "kind": "review",
+      "label": "人工审核",
+      "description": "等待人工审核决定后再继续。",
+      "position": { "x": 560, "y": 256 },
+      "config": {
+        "instructions": "确认计划内容是否符合预期，必要时补充风险说明。"
+      }
+    },
+    {
+      "id": "end-1",
+      "kind": "end",
+      "label": "结果输出",
+      "description": "整理最终输出并返回界面。",
+      "position": { "x": 780, "y": 324 },
+      "config": {
+        "outputFormat": "markdown"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-start-llm",
+      "source": "start-1",
+      "target": "llm-1",
+      "label": "上下文"
+    },
+    {
+      "id": "edge-llm-review",
+      "source": "llm-1",
+      "target": "review-1",
+      "label": "草稿"
+    },
+    {
+      "id": "edge-review-end",
+      "source": "review-1",
+      "target": "end-1",
+      "label": "通过"
+    }
+  ],
+  "expectations": {
+    "entryNodeId": "start-1",
+    "reviewNodeId": "review-1",
+    "terminalNodeId": "end-1",
+    "reviewNodeCount": 1
+  }
+}

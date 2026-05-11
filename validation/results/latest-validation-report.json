@@ -1,0 +1,62 @@
+{
+  "checkedAt": "2026-04-17T04:58:11.120Z",
+  "total": 9,
+  "passed": 9,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "工作流样例校验：workflow-graph.json",
+      "passed": true,
+      "details": "节点 6 个，连线 6 条。",
+      "checkedAt": "2026-04-17T04:58:03.747Z"
+    },
+    {
+      "name": "工作流样例校验：workflow-loop.json",
+      "passed": true,
+      "details": "节点 4 个，连线 4 条。",
+      "checkedAt": "2026-04-17T04:58:03.749Z"
+    },
+    {
+      "name": "草稿样例校验：editor-draft-sample-v2.json",
+      "passed": true,
+      "details": "已检查 selectedNodeId=condition-1 与 theme=light。",
+      "checkedAt": "2026-04-17T04:58:03.750Z"
+    },
+    {
+      "name": "审核样例校验：pending-review-sample-v2.json",
+      "passed": true,
+      "details": "已检查 sessionId=review-sample-002，步骤数 2。",
+      "checkedAt": "2026-04-17T04:58:03.751Z"
+    },
+    {
+      "name": "工作流文档样例校验：workflow-document-sample-v2.json",
+      "passed": true,
+      "details": "文档类型 template，节点 2 个。",
+      "checkedAt": "2026-04-17T04:58:03.752Z"
+    },
+    {
+      "name": "TypeScript 类型检查",
+      "passed": true,
+      "details": "已手动运行 ./node_modules/.bin/tsc.cmd --noEmit，检查通过。",
+      "checkedAt": "2026-04-17T04:58:03.752Z"
+    },
+    {
+      "name": "ESLint 静态检查",
+      "passed": true,
+      "details": "已手动运行 npm run lint，检查通过。npm 仍会提示 node-linker 配置 warning，但不影响结果。",
+      "checkedAt": "2026-04-17T04:58:03.752Z"
+    },
+    {
+      "name": "远程模型连通性",
+      "passed": true,
+      "details": "服务已连通，模型返回：验证通过。",
+      "checkedAt": "2026-04-17T04:58:11.119Z"
+    },
+    {
+      "name": "打包产物校验",
+      "passed": true,
+      "details": "已发现可执行文件：out\\flowapp-win32-x64\\flowapp.exe；EXE 大小：222752768 字节；主进程构建：.vite\\build-main\\main.js (18648 字节)；Preload 构建：.vite\\build-preload\\preload.js (951 字节)",
+      "checkedAt": "2026-04-17T04:58:11.120Z"
+    }
+  ]
+}

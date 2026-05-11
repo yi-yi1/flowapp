@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "name": "审核规划样例",
+  "exportedAt": "2026-04-09T13:10:00+08:00",
+  "draft": {
+    "nodes": [
+      {
+        "id": "start-1",
+        "kind": "start",
+        "label": "采集目标",
+        "description": "根据任务初始化本次工作流。",
+        "position": { "x": 120, "y": 120 },
+        "config": {
+          "inputTemplate": "分析当前项目并给出下一步最值得推进的实现任务。"
+        }
+      },
+      {
+        "id": "llm-1",
+        "kind": "llm",
+        "label": "规划节点",
+        "description": "根据上下文生成实施计划。",
+        "position": { "x": 340, "y": 188 },
+        "config": {
+          "model": "",
+          "systemPrompt": "请用中文给出清晰、可执行的实现计划。"
+        }
+      },
+      {
+        "id": "review-1",
+        "kind": "review",
+        "label": "人工审核",
+        "description": "等待人工确认后再继续执行。",
+        "position": { "x": 560, "y": 256 },
+        "config": {
+          "instructions": "确认计划是否符合预期，必要时补充风险说明。"
+        }
+      },
+      {
+        "id": "end-1",
+        "kind": "end",
+        "label": "结果输出",
+        "description": "整理最终输出并返回界面。",
+        "position": { "x": 780, "y": 324 },
+        "config": {
+          "outputFormat": "markdown"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge-start-llm",
+        "source": "start-1",
+        "target": "llm-1",
+        "label": "上下文"
+      },
+      {
+        "id": "edge-llm-review",
+        "source": "llm-1",
+        "target": "review-1",
+        "label": "草稿"
+      },
+      {
+        "id": "edge-review-end",
+        "source": "review-1",
+        "target": "end-1",
+        "label": "通过"
+      }
+    ],
+    "selectedNodeId": "review-1",
+    "workspacePath": "D:/Code/front/flowapp",
+    "theme": "light"
+  }
+}

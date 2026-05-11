@@ -1,0 +1,130 @@
+@import 'tailwindcss';
+
+:root {
+  --app-bg: #08090b;
+  --panel-bg: rgba(17, 20, 24, 0.86);
+  --panel-strong: rgba(10, 12, 15, 0.9);
+  --panel-line: rgba(255, 255, 255, 0.08);
+  --text-main: #f5efe4;
+  --text-dim: #b8aea0;
+  --text-soft: #867c70;
+  --accent: #d8a35d;
+  --accent-soft: rgba(216, 163, 93, 0.18);
+  --accent-cold: #89b8d6;
+  --shadow-deep: 0 24px 80px rgba(0, 0, 0, 0.44);
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top left, rgba(216, 163, 93, 0.12), transparent 22%),
+    radial-gradient(circle at top right, rgba(108, 143, 166, 0.12), transparent 24%),
+    linear-gradient(135deg, #07080a 0%, #101216 52%, #14171b 100%);
+  font-family:
+    "Aptos",
+    "Segoe UI Variable",
+    "Georgia",
+    "Aptos",
+    sans-serif;
+}
+
+body[data-theme="light"] {
+  --app-bg: #f5efe7;
+  --panel-bg: rgba(255, 251, 245, 0.86);
+  --panel-strong: rgba(245, 238, 228, 0.92);
+  --panel-line: rgba(70, 53, 36, 0.1);
+  --text-main: #35291f;
+  --text-dim: #6c5f52;
+  --text-soft: #8d7a68;
+  --accent: #a67027;
+  --accent-soft: rgba(166, 112, 39, 0.12);
+  --accent-cold: #6e95af;
+  --shadow-deep: 0 24px 70px rgba(70, 52, 35, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(216, 163, 93, 0.12), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(108, 143, 166, 0.1), transparent 26%),
+    linear-gradient(135deg, #07080a 0%, #101216 52%, #14171b 100%);
+  color: var(--text-main);
+}
+
+body[data-theme="light"] {
+  background:
+    radial-gradient(circle at top left, rgba(216, 163, 93, 0.14), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(110, 149, 175, 0.1), transparent 24%),
+    linear-gradient(135deg, #f8f3eb 0%, #f1e7da 52%, #ebe0d2 100%);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at center, black 58%, transparent 100%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background:
+    linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.05) 48%, transparent 52%),
+    linear-gradient(180deg, transparent 0%, rgba(216, 163, 93, 0.05) 100%);
+}
+
+::selection {
+  background: rgba(216, 163, 93, 0.35);
+}
+
+.glass-panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-line);
+  box-shadow: var(--shadow-deep);
+  backdrop-filter: blur(18px);
+}
+
+.section-title {
+  color: var(--text-soft);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.display-title {
+  font-family:
+    "Georgia",
+    "Times New Roman",
+    serif;
+  letter-spacing: 0.02em;
+}
+
+.accent-ring {
+  box-shadow:
+    0 0 0 1px rgba(216, 163, 93, 0.26),
+    0 12px 32px rgba(0, 0, 0, 0.32);
+}

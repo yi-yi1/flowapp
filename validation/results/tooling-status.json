@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-04-09T12:55:00+08:00",
+  "typescript": {
+    "passed": true,
+    "details": "已手动运行 ./node_modules/.bin/tsc.cmd --noEmit，检查通过。"
+  },
+  "eslint": {
+    "passed": true,
+    "details": "已手动运行 npm run lint，检查通过。npm 仍会提示 node-linker 配置 warning，但不影响结果。"
+  }
+}

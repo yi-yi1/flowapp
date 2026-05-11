@@ -1,0 +1,45 @@
+{
+  "sessionId": "review-sample-002",
+  "reviewNodeId": "review-1",
+  "title": "人工审核",
+  "instructions": "确认本次计划是否需要继续执行。",
+  "latestOutput": "请在继续前人工确认。",
+  "reviewNoteDraft": "建议先检查风险条目。",
+  "createdAt": "2026-04-17T10:00:00.000Z",
+  "workspacePath": "D:/Code/front/flowapp",
+  "steps": [
+    {
+      "nodeId": "start-1",
+      "kind": "start",
+      "title": "开始节点已完成",
+      "summary": "已初始化上下文。",
+      "output": "读取工作区信息。"
+    },
+    {
+      "nodeId": "tool-1",
+      "kind": "tool",
+      "title": "工具节点已完成",
+      "summary": "已读取 README 文件。",
+      "output": "项目说明内容"
+    }
+  ],
+  "variablesSnapshot": {
+    "workspace_path": "D:/Code/front/flowapp",
+    "last_output": "请在继续前人工确认。",
+    "review_note": "建议先检查风险条目。",
+    "node.tool-1.output": "项目说明内容"
+  },
+  "pathTrace": [
+    {
+      "nodeId": "start-1",
+      "nodeKind": "start",
+      "title": "开始节点已完成",
+      "summary": "已加载工作区。",
+      "chosenExit": {
+        "edgeId": "edge-start-tool",
+        "target": "tool-1",
+        "label": "初始化"
+      }
+    }
+  ]
+}

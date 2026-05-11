@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    {
+      "id": "start-1",
+      "kind": "start",
+      "label": "采集目标",
+      "description": "根据用户任务初始化工作流。",
+      "position": { "x": 120, "y": 120 },
+      "config": {
+        "inputTemplate": "整理当前任务背景。"
+      }
+    },
+    {
+      "id": "llm-1",
+      "kind": "llm",
+      "label": "规划节点",
+      "description": "生成实现计划。",
+      "position": { "x": 340, "y": 188 },
+      "config": {
+        "model": "qwen3.5-9b",
+        "systemPrompt": "请输出中文执行计划。"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-start-llm",
+      "source": "start-1",
+      "target": "llm-1",
+      "label": "上下文"
+    }
+  ],
+  "selectedNodeId": "llm-1",
+  "workspacePath": "D:/Code/front/flowapp",
+  "theme": "light"
+}

@@ -1,0 +1,26 @@
+{
+  "sessionId": "review-sample-001",
+  "reviewNodeId": "review-1",
+  "title": "人工审核",
+  "instructions": "确认实施计划是否符合预期。",
+  "latestOutput": "1. 先补模型设置持久化。2. 再补自动化验证脚本。",
+  "reviewNoteDraft": "建议补一份打包验证说明。",
+  "createdAt": "2026-04-08T18:00:00.000Z",
+  "workspacePath": "D:/Code/front/flowapp",
+  "steps": [
+    {
+      "nodeId": "start-1",
+      "kind": "start",
+      "title": "开始节点已完成",
+      "summary": "已收集工作区信息。",
+      "output": "分析当前项目并生成任务背景。"
+    },
+    {
+      "nodeId": "llm-1",
+      "kind": "llm",
+      "title": "模型节点已完成",
+      "summary": "已从远程模型服务生成计划。",
+      "output": "1. 完成模型配置。2. 完成连通性测试。"
+    }
+  ]
+}
